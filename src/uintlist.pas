@@ -32,6 +32,7 @@ type
       property Items[Index: Integer]: Integer read GetItem; Default;
       property Count: Integer read GetCount;
       procedure Add(Value: Integer);
+      procedure Exchange(Index1, Index2: Integer);
       procedure Clear;
   end;
 
@@ -70,6 +71,16 @@ begin
   newIntItem := TIntItem.Create;
   newIntItem.intValue := Value;
   itemList.Add(newIntItem);
+end;
+
+procedure TIntList.Exchange(Index1, Index2: Integer);
+var
+  tempInt1, tempInt2: Integer;
+begin
+  tempInt1 := GetItem(Index1);
+  tempInt2 := GetItem(Index2);
+  TIntItem(itemList[Index1]).intValue := tempInt2;
+  TIntItem(itemList[Index2]).intValue := tempInt1;
 end;
 
 procedure TIntList.Clear;
